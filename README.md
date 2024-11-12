@@ -45,3 +45,18 @@ if letter == Gray
 	if word contains letter
 		remove word from words
 ```
+#### PSA FROM GREG
+This is a new edit to the algorithm. I am scrapping the old idea for a new one.
+```
+words = (file of list of Wordle Answers)
+testList = (list of words to test)
+possibleAnswers = (list of possible answers shown to the user)
+
+define testWords(listTesting, listAnswers, UserInputs)
+	listTesting = listAnswers
+	listAnswers = []
+	testUserInputFunction(listTesting, UserInuts)
+	(THIS FUNCTION WILL ADD ALL VALID WORDS TO THE "listAnswers" LIST)
+```
+#### The One Issue (I think)
+The test list will not contain any words when it is originally used so the very first time the program is ran it will have to use the original list of words. This can be solved via a while loop with the first test of user inputs being done through the words list and then embedding another while loop inside the first while loop with the "testWords" function inside that can then be ran as many times as the user wants.
