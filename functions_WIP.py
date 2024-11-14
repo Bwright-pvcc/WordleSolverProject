@@ -27,29 +27,35 @@ def testInputs(TestList, AnswerList, Table):
     AnswerList = [] #Empties the answerlist before the tests are ran on the testlist and words are added to the answer list
     for word in TestList:
         testSubject = word[0] #Index the test subject
+        successCheck = 0 #Variable to track successful checks
+        rowCount = 0 #Variable to track rows iterated through
         for row in Table.rows: #Index the table and remove the headers
             letter = row[0]
             color = row[1].strip()
             position = int(row[2].strip())
-            
+            rowCount += 1
+
             if color == 'Green':
                 if testSubject[position] == letter: #If the color is green and the letter in the position of the word is the same as the green user letter
-                    AnswerList.append(testSubject) #It will add the word to the list of possible answers
+                    successCheck += 1 #It will increase the successful checks by 1
             elif color == 'Yellow':
                 if letter in testSubject and testSubject[position] != letter: #If the word contains the letter and the letter is not in the same position as the yellow user letter
-                    AnswerList.append(testSubject) #It will add the word to the list of possible answers
+                    successCheck += 1 #It will increase the successful checks by 1
             elif color == 'Gray':
                 if letter not in testSubject: #If the word does not contain the gray user letter
-                    AnswerList.append(testSubject) #It will add the word to a list of possible answers
+                    successCheck += 1 #It will increase the successful checks by 1
+        if successCheck == rowCount:
+            AnswerList.append(testSubject) #If each check was successful then the word is added to the list
     print(AnswerList)
 
-#Placeholder inputs while I wait for BEN to finish
-userLetter = input('letter \n')
-userColor = input('color \n')
-userPosition = input('position \n')
-
-#Runs the function on the user inputs.
-addInputs(userLetter, userColor, userPosition)
+#Placeholder inputs to test multiple inputs on the table
+quack = 0
+while quack < 3:
+    userLetter = input('letter \n')
+    userColor = input('color \n')
+    userPosition = input('position \n')
+    addInputs(userLetter, userColor, userPosition)
+    quack += 1
 
 testInputs(testList, possibleAnswers, lettersTable)
 
