@@ -32,7 +32,7 @@ def testInputs(TestList, AnswerList, Table):
         for row in Table.rows: #Index the table and remove the headers
             letter = row[0]
             color = row[1].strip()
-            position = int(row[2].strip())
+            position = int(row[2])
             rowCount += 1
 
             if color == 'green':
@@ -78,7 +78,7 @@ while True:
             else:
                 print("Invalid letter. Please enter a single lowercase alphabet character. \n")
         while True:
-            userColor = input('Color \n').strip()
+            userColor = input('Color \n').strip().lower()
             if is_valid_color(userColor):
                 break
             else:
@@ -95,7 +95,7 @@ while True:
     testInputs(testList, possibleAnswers, lettersTable)
     print(lettersTable)
     while True:
-        stopReset = input('stop or continue? \n').strip.lower()
+        stopReset = input('stop or continue? \n').strip().lower()
         if stopReset in ['stop', 'continue']:
             break
         else:
