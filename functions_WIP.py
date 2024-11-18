@@ -1,5 +1,6 @@
 import csv
 from prettytable import PrettyTable
+import os
 
     #Brings the file into the program
 with open('wordle.csv', 'r')as file:
@@ -58,12 +59,14 @@ def is_valid_color(color):
 def is_valid_position(position):
     return position.isdigit() and 1 <= int(position) <= 5
 
+os.system('cls')
+
 #I'm just gonna make input validation and turn this thang in whenever
 while True:
     while True:
         try:
             howManyLetters = int(input('How many letters would you like to enter? \n'))
-            if howManyLetters > 0:
+            if howManyLetters > 0 and howManyLetters <= 5:
                 break
             else:
              print("Please enter a positive number. \n")
@@ -92,6 +95,7 @@ while True:
                 print("Invalid position. Please enter a number between 1 and 5. \n")
         addInputs(userLetter, userColor, (userPosition - 1))
         quack += 1
+        os.system('cls')
     testInputs(testList, possibleAnswers, lettersTable)
     print(lettersTable)
     while True:
