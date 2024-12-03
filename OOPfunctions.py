@@ -1,5 +1,3 @@
-###########################################  NOT SURE IF I WILL USE THESE OR NOT, THE PRETTY TABLE FUNCIONS WORK PROPERLY. I WANT TO LEARN OOP AND WANT TO TRY AND GET THESE TO WORK TO, IT SHOULD ALSO RUN SMOOTHER THAN PRETTY TABLE BUT WE'RE TALKING LIKE MILLISECONDS SAVED  ########################################### 
-
 import csv
 import os
 
@@ -10,7 +8,7 @@ with open('wordle.csv', 'r')as file:
     #Turns the variable into a list
     wordAnswers = list(csv_reader)
 
- #Gonna need these for later
+#Creating a test list and a possible answer list seperate from the original to add a reset function
 testList = []
 possibleAnswers = wordAnswers
 
@@ -20,35 +18,46 @@ class Inputs:
         self.position = position
         self.color = color        
 
+#This list will contain all user inputs
 userInputs = []
 
-#Function to add user inputs to the table that will be used for storing values for checking validity of words on the list.
+#This function turns the user inputs into an object and adds them to the user input list
 def addInputs(letter, color, position):
     userInputs.append(Inputs(letter, int(position) - 1, color))
 
-#The Holy Grail, This function is ran on every word in the entire list of Test Subjects and each letter is ran on every word.
+######################## THERE IS TONS OF OPTIMIZATION I COULD DO TO THIS FUNCTION BUT I DO NOT THINK IT MATTERS BECAUSE IT RUNS IN LESS THAN A SECOND ########################
+
 def testInputs(TestList, AnswerList, inputs):
-    TestList = AnswerList #Sets the testlist to availible answers for optimization
-    AnswerList = [] #Empties the answerlist before the tests are ran on the testlist and words are added to the answer list
+    #Sets the testlist to availible answers for optimization
+    TestList = AnswerList 
+    #Empties the answerlist before the tests are ran on the testlist and words are added to the answer list
+    AnswerList = [] 
     for word in TestList:
         testSubject = word[0] #Index the test subject
-        successCheck = 0 #Variable to track successful checks
-        checkCount = 0 #Variable to track rows iterated through
-        for item in inputs: #Index the table and remove the headers
+        #Track all successful checks made on a word
+        successCheck = 0 
+        #Track the total number of checks made on a word
+        checkCount = 0 
+        for item in inputs:
+            #Initiates the check process for each user input
             checkCount += 1
 
+            #For each letter checked, if it is successful the success count will increase with the check count
             if item.color == 'green':
-                if testSubject[item.position] == item.letter: #If the color is green and the letter in the position of the word is the same as the green user letter
-                    successCheck += 1 #It will increase the successful checks by 1
+                if testSubject[item.position] == item.letter: 
+                    successCheck += 1 
             elif item.color == 'yellow':
-                if item.letter in testSubject and testSubject[item.position] != item.letter: #If the word contains the letter and the letter is not in the same position as the yellow user letter
-                    successCheck += 1 #It will increase the successful checks by 1
+                if item.letter in testSubject and testSubject[item.position] != item.letter: 
+                    successCheck += 1 
             elif item.color == 'gray':
-                if item.letter not in testSubject: #If the word does not contain the gray user letter
-                    successCheck += 1 #It will increase the successful checks by 1
+                if item.letter not in testSubject:
+                    successCheck += 1 
+        #If the success count is equal to the total check count then the test word is added to the possible answer list
         if successCheck == checkCount:
-            AnswerList.append(testSubject) #If each check was successful then the word is added to the list
+            AnswerList.append(testSubject) 
     print(AnswerList)
+
+######################## THERE IS TONS OF OPTIMIZATION I COULD DO TO THIS FUNCTION BUT I DO NOT THINK IT MATTERS BECAUSE IT RUNS IN LESS THAN A SECOND ########################
 
 #INPUT VALIDATION FUNCTIONS
 def is_valid_letter(letter):
@@ -62,7 +71,6 @@ def is_valid_position(position):
 
 os.system('cls')
 
-#I'm just gonna make input validation and turn this thang in whenever
 while True:
     while True:
         try:
@@ -90,7 +98,7 @@ while True:
         while True:
             userPosition = input('Position \n').strip()
             if is_valid_position(userPosition):
-                userPosition = int(userPosition)  # Convert to int for processing
+                userPosition = int(userPosition)  
                 break
             else:
                 print("Invalid position. Please enter a number between 1 and 5. \n")
