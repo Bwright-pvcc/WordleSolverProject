@@ -40,3 +40,20 @@ with ui.button_group():
     
    
 ui.run()
+
+
+
+
+
+
+from nicegui import ui
+
+def create_buttons():
+    user_input = input("Enter a string: ")  # Ask the user for a string
+    for letter in user_input:
+        ui.button(letter).on_click(lambda x, letter=letter: print(f"Button for '{letter}' clicked"))
+
+ui.label("Enter a string to generate buttons for each letter:")
+ui.textbox().on_change(lambda text: create_buttons())  # When the user types, buttons will be created
+
+ui.run()
