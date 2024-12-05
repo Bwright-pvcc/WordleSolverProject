@@ -1,7 +1,7 @@
 from nicegui import ui
 
-my_list = ["apple", "banana", "cherry"]
-texting = "eh"
+
+
 
 class ToggleButton(ui.button):
 
@@ -25,35 +25,29 @@ class ToggleButton(ui.button):
         super().update()
 
 
-UserInput = ui.input(label='Text', placeholder='start typing',
-            on_change=lambda e: result.set_text(e.value),
-            validation={'Input Must be Five Letters': lambda value: len(value) == 5})
+B1 =ui.input(label='Text', placeholder='start typing',
+    on_change=lambda e: result1.set_text(e.value),
+    validation={'Input One Letter': lambda value: len(value) == 1})
+B2 =ui.input(label='Text', placeholder='start typing',
+    on_change=lambda e: result2.set_text(e.value),
+    validation={'Input One Letter': lambda value: len(value) == 1})
+B3 =ui.input(label='Text', placeholder='start typing',
+    on_change=lambda e: result3.set_text(e.value),
+    validation={'Input One Letter': lambda value: len(value) == 1})
+B4 =ui.input(label='Text', placeholder='start typing',
+    on_change=lambda e: result4.set_text(e.value),
+    validation={'Input One Letter': lambda value: len(value) == 1})
+B5 =ui.input(label='Text', placeholder='start typing',
+    on_change=lambda e: result5.set_text(e.value),
+    validation={'Input One Letter': lambda value: len(value) == 1})
 
-UserList = list(UserInput.value)
 
 with ui.button_group():
-    ToggleButton(my_list[0])
-    ToggleButton(my_list[1])
-    result = ToggleButton(my_list[1])
-    
-    
-    
+    result1 = ToggleButton()
+    result2 = ToggleButton()
+    result3 = ToggleButton()
+    result4 = ToggleButton()
+    result5 = ToggleButton()
+        
    
-ui.run()
-
-
-
-
-
-
-from nicegui import ui
-
-def create_buttons():
-    user_input = input("Enter a string: ")  # Ask the user for a string
-    for letter in user_input:
-        ui.button(letter).on_click(lambda x, letter=letter: print(f"Button for '{letter}' clicked"))
-
-ui.label("Enter a string to generate buttons for each letter:")
-ui.textbox().on_change(lambda text: create_buttons())  # When the user types, buttons will be created
-
 ui.run()
