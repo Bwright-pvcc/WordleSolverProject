@@ -92,7 +92,8 @@ The code is very simple. It creates a user input box that updates whenever the u
 
 ### Second 
 
-- Download [Python](https://www.python.org/downloads/) and the most recent version of [VSCode](https://code.visualstudio.com/download)
+- Download [Python](https://www.python.org/downloads/) and the most recent version of [VSCode](https://code.visualstudio.com/download). The files are installer files so you will need to open them once they've been downloaded
+- Open VScode and Install the python extensions. Here is a [link](https://code.visualstudio.com/docs/python/python-tutorial) on how to do that. 
 - Navigate to [NiceGUI](https://nicegui.io/) and follow the download instructions. The process is very simple and involves copying and pasting only 2 lines into the terminal.
 
 ### Third 
