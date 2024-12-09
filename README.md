@@ -1,10 +1,10 @@
-# WordleSolverProject
+# WordleSolverProject (By: Greg and Ben) 
 
 #### Problem: 
 Solving the Wordle takes time and mental energy. 
 
 #### Goal: 
-Create a program that solves the daily Wordle. 
+Create a program that solves the daily Wordle (and looks good doing it) 
 
 #### Process: 
 Feed the program Wordle letters and it will show a list of possible answers remaining
@@ -76,7 +76,10 @@ The code is very simple. It creates a user input box that updates whenever the u
 
 #### The Test Documents
 
-Main.py: Ben's finished UI (Unmerged)
-
-[Mergefile](Test Files/Holding File.py)
+* Main: Ben's finished UI (Unmerged)
+* Mergefile: Ben's first attempt at merging OOPCode and Main
+* Test: An early example of a user input controlling the text of a button
+* Holding File: A slightly later example of the UI using refresh to constantly update 
+* OOPFunctions: Greg's finished algorithm
+* functions_WIP: An updated version of Greg's finished algorithm with tables that didn't end up getting used 
 
