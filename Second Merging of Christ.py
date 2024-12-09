@@ -1,7 +1,8 @@
 def main():
     import csv
     import os
-    from nicegui import ui 
+    import sys
+    from nicegui import app, ui 
 
         #Brings the file into the program
     with open('wordle.csv', 'r')as file:
@@ -9,6 +10,7 @@ def main():
         csv_reader = csv.reader(file)
         #Turns the variable into a list
         wordAnswers = list(csv_reader)
+
 
     # This is the user input 
     class UIInput(ui.input): 
@@ -83,6 +85,7 @@ def main():
             testInputs(testList, possibleAnswers, userInputs)
 
             self.update()
+
     
     class Inputs:
         def __init__(self, letter, position, color):
@@ -132,13 +135,43 @@ def main():
                 AnswerList.append(testSubject) 
         AnswerListString = ", ".join(AnswerList)
         ui.label("Possible Answers: " + AnswerListString)
-        UIInput(label='Input', placeholder='start typing',
+        UIInput(label=' New Input', placeholder='start typing',
         validation={'Input a Five Letter Word then press Enter': lambda value: len(value) == 5})
 
     os.system('cls')
+
+    ui.add_head_html('''
+    <style type="text/tailwindcss">
+        h2 {
+            font-size: 150%;
+            font-family: Verdana, sans-serif
+        }
+        h1 {
+            font-family: Verdana, sans-serif
+        }
+    </style>
+    ''')
+    ui.add_body_html('''
+    <style type="text/tailwindcss">
+        p2 {
+            font-family: Verdana, sans-serif
+        }
+    </style>
+    ''')
+
+    ui.html('<h2>Welcome to the Python Wordle Solver!</h2>')
+    ui.html('<p2>Enter a five letter word below, select the color of your letter, then hit submit.</p2>')
+    ui.html('<p2>All future entries must come from the possible answer list or the program will break</p2>')
+    with ui.row():
+        ui.html('<p2>If you would like to restart press this button ----></p2>')
+        ui.button("Press to Restart", on_click=lambda: ui.notify('You have to just run the program again'))
+
+        
+    ui.separator()
     # Create a textbox for user Input
     UIInput(label='Input', placeholder='start typing',
         validation={'Input a Five Letter Word then press Enter': lambda value: len(value) == 5})
     # Do the UI
+    
     ui.run()
 main()
