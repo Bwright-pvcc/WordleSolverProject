@@ -79,5 +79,26 @@ The code is very simple. It creates a user input box that updates whenever the u
 * Test: An early example of a user input controlling the text of a button
 * Holding File: A slightly later example of the UI using refresh to constantly update 
 * OOPFunctions: Greg's finished algorithm
-* functions_WIP: An updated version of Greg's finished algorithm with tables that didn't end up getting used 
+* functions_WIP: An updated version of Greg's finished algorithm with tables that didn't end up getting used
+
+
+
+## Instructions for Running Program 
+
+### First 
+
+- Download "The Second Merging of Christ" and "wordle.csv"
+- Make sure they are in the same file/location on your computer
+
+### Second 
+
+- Download [Python](https://www.python.org/downloads/) and the most recent version of [VSCode](https://code.visualstudio.com/download)
+- Navigate to [NiceGUI](https://nicegui.io/) and follow the download instructions. The process is very simple and involves copying and pasting only 2 lines into the terminal.
+
+### Third 
+- Open up the daily wordle
+- Run the program and use it to help you solve wordle
+- Enjoy!
+  
+
 
