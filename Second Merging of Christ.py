@@ -10,16 +10,6 @@ def main():
         #Turns the variable into a list
         wordAnswers = list(csv_reader)
 
-    class SubmitButton(ui.button): 
-        def __init__(self, *args, **kwargs,) -> None:
-            super().__init__(*args, **kwargs)
-            self.on('click', self.toggle)
-        
-        def toggle(self) -> None:
-            testInputs(testList, possibleAnswers, userInputs)
-
-            self.update()
-
     # This is the user input 
     class UIInput(ui.input): 
         # Not fully sure what this does but it works 
@@ -35,18 +25,21 @@ def main():
             # Checking the correct Input Length 
             if len(self.value) == 5:
                 selflist = list(self.value)
+                listlength = len(userInputs)
                 # Makes a Group of 5 Buttons out of the list of the user's input 
                 with ui.button_group():
-                    ToggleButton(0, selflist[0])
-                    ToggleButton(1, selflist[1])
-                    ToggleButton(2, selflist[2])
-                    ToggleButton(3, selflist[3])
-                    ToggleButton(4, selflist[4])
+                    ToggleButton(0 + (listlength), selflist[0])
+                    ToggleButton(1 + (listlength), selflist[1])
+                    ToggleButton(2 + (listlength), selflist[2])
+                    ToggleButton(3 + (listlength), selflist[3])
+                    ToggleButton(4 + (listlength), selflist[4])
+                #Add all the User inputs to the list to be processed by backend code 
                 addInputs(selflist[0], 1, 1)
                 addInputs(selflist[1], 1, 2)
                 addInputs(selflist[2], 1, 3)
                 addInputs(selflist[3], 1, 4)
                 addInputs(selflist[4], 1, 5)
+                #Creates the submit button
                 SubmitButton("Submit")
             # Updates the UI to reflect the changes 
             # This is what allows the input to update after the code has run 
@@ -75,27 +68,33 @@ def main():
 
         def update(self) -> None:
             #Changes the color depending on the state
-            print(self._state)
             self.props(f'color={"grey" if self._state == 1 else ""}')
             self.props(f'color={"yellow" if self._state == 2 else ""}')
             self.props(f'color={"green" if self._state == 3 else ""}')
             #This is what allows the button to update after the code has run 
             super().update()
 
+    class SubmitButton(ui.button): 
+        def __init__(self, *args, **kwargs,) -> None:
+            super().__init__(*args, **kwargs)
+            self.on('click', self.toggle)
+        
+        def toggle(self) -> None:
+            testInputs(testList, possibleAnswers, userInputs)
 
-    #Creating a test list and a possible answer list seperate from the original to add a reset function
-    testList = []
-    possibleAnswers = wordAnswers
-    userInputs = []
-
+            self.update()
+    
     class Inputs:
         def __init__(self, letter, position, color):
             self.letter = letter
             self.position = position
             self.color = color        
 
+    #Creating a test list and a possible answer list seperate from the original to add a reset function
+    testList = []
+    possibleAnswers = wordAnswers
     #This list will contain all user inputs
-
+    userInputs = []
 
     #This function turns the user inputs into an object and adds them to the user input list
     def addInputs(letter, color, position):
@@ -132,13 +131,14 @@ def main():
             if successCheck == checkCount:
                 AnswerList.append(testSubject) 
         AnswerListString = ", ".join(AnswerList)
-        ui.label(AnswerListString)
+        ui.label("Possible Answers: " + AnswerListString)
+        UIInput(label='Input', placeholder='start typing',
+        validation={'Input a Five Letter Word then press Enter': lambda value: len(value) == 5})
 
     os.system('cls')
-
-    UIInput()
-
-
+    # Create a textbox for user Input
+    UIInput(label='Input', placeholder='start typing',
+        validation={'Input a Five Letter Word then press Enter': lambda value: len(value) == 5})
     # Do the UI
     ui.run()
 main()
