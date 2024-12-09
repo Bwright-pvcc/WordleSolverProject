@@ -18,8 +18,6 @@ The program then iterate through the list of possible wordle answers and removes
 Each time the user is prompted to input a letter they will also be prompted with (INPUT EXIT TO LEAVE) in order to close the program.
 
 #### Challenges: 
-If someone is playing a different version of Wordle the list will need to be replaced. Could potentially store the list in a separate variable and add another input for the user to simply restart the program.
-
 Integrating Greg's code (The Algorithm) and Ben's code (The UI) was a pain because NiceGUI was difficult and, in order to update to user inputs, had to be interfaced with in a very particular way. 
 
 #### The Algorithm (Pseudo-Code) 
@@ -60,7 +58,7 @@ define testWords(listTesting, listAnswers, UserInputs)
 	(THIS FUNCTION WILL ADD ALL VALID WORDS TO THE "listAnswers" LIST)
 ```
 #### Potential Issues
-The test list will not contain any words when it is originally used so the very first time the program is ran it will have to use the original list of words. This can be solved via a while loop with the first test of user inputs being done through the words list and then embedding another while loop inside the first while loop with the "testWords" function inside that can then be ran as many times as the user wants.
+The test list will not contain any words when it is originally used so the very first time the program is ran it will have to use the original list of words. This can be solved via a while loop with the first test of user inputs being done through the words list and then embedding another while loop inside the first while loop with the "testWords" function inside that can then be ran as many times as the user wants. If someone is playing a different version of Wordle the list will need to be replaced. Could potentially store the list in a separate variable and add another input for the user to simply restart the program.
 
 #### Final Algorithm by Greg
 
